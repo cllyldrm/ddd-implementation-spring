@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: domaindrivendesign-api
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url:
+    username:
+    password:
+    hikari:
+      pool-name: jdomaindrivendesign-api-pool-master
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        cacheResultSetMetadata: true
+        useLocalSessionState: true
+        maintainTimeStats: false
+      maximum-pool-size: 150
+      minimum-idle: 25
+  rabbitmq:
+    connection-timeout: 5000ms
+    template:
+      reply-timeout: 1500ms
+    host:
+    username:
+    password:
+    virtual-host:
+
+management:
+  endpoints:
+    web:
+      base-path: /_monitoring
+      exposure:
+        include: "health"
+  endpoint:
+    health:
+      enabled: true
+  health:
+    diskspace:
+      enabled: false
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: info
+  facility: DomainDrivenDesignApiJava
+
+swagger:
+  host:
+    url: localhost:5000
+    path:
